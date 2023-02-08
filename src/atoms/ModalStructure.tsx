@@ -32,6 +32,8 @@ const style = StyleSheet.create({
   backdrop: {
     backgroundColor: 'rgba(0,0,0,0.3)',
     flexGrow: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });
 
