@@ -3,10 +3,12 @@ import {StyleSheet} from 'react-native';
 
 import Button from '../atoms/Button';
 
-function PrimaryButton(): JSX.Element {
+type Props = {label: string};
+
+function PrimaryButton({label}: Props): JSX.Element {
   return (
     <Button
-      label="Submit"
+      label={label}
       wrapperStyle={style.wrapper}
       labelStyle={style.label}
     />
