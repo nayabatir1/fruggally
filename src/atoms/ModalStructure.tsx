@@ -3,9 +3,9 @@ import type {PropsWithChildren} from 'react';
 import {
   KeyboardAvoidingView,
   Modal,
-  Platform,
-  Pressable,
   StyleSheet,
+  TouchableOpacity,
+  TouchableWithoutFeedback,
 } from 'react-native';
 
 type Props = PropsWithChildren<{visible: boolean; toggleModal: () => void}>;
@@ -17,20 +17,23 @@ function ModalStructure({visible, children, toggleModal}: Props): JSX.Element {
       presentationStyle="overFullScreen"
       hardwareAccelerated={true}
       transparent={true}
+      statusBarTranslucent={true}
+      onRequestClose={toggleModal}
       visible={visible}>
-      <Pressable style={style.backdrop} onPress={toggleModal}>
+      <TouchableOpacity style={style.backdrop} onPress={toggleModal}>
         <KeyboardAvoidingView
-          behavior={Platform.OS === 'ios' ? 'position' : 'padding'}>
-          {children}
+          // behavior={Platform.OS === 'ios' ? 'position' : 'padding'}
+          behavior="position">
+          <TouchableWithoutFeedback>{children}</TouchableWithoutFeedback>
         </KeyboardAvoidingView>
-      </Pressable>
+      </TouchableOpacity>
     </Modal>
   );
 }
 
 const style = StyleSheet.create({
   backdrop: {
-    backgroundColor: 'rgba(0,0,0,0.3)',
+    backgroundColor: 'rgba(150,90,120,0.8)',
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',

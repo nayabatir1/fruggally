@@ -11,6 +11,7 @@ import AntIcon from 'react-native-vector-icons/AntDesign';
 
 import ModalStructure from '../atoms/ModalStructure';
 import {Colors, Mixins, Typography} from '../styles';
+import parseLink from '../utils/ParseLink';
 import PrimaryButton from './PrimaryButton';
 
 function AddProductModal(): JSX.Element {
@@ -18,6 +19,13 @@ function AddProductModal(): JSX.Element {
   const [text, setText] = useState('');
 
   const toggleModal = useCallback(() => setShowModal(p => !p), []);
+
+  const closeModal = useCallback(async () => {
+    // setShowModal(false);
+    const d = await parseLink(text);
+
+    console.log(d);
+  }, [text]);
 
   return (
     <>
@@ -34,7 +42,9 @@ function AddProductModal(): JSX.Element {
             placeholderTextColor={Colors.GRAY_MEDIUM}
           />
 
-          <PrimaryButton />
+          <TouchableOpacity onPress={closeModal}>
+            <PrimaryButton label="Submit" />
+          </TouchableOpacity>
         </View>
       </ModalStructure>
 
@@ -53,7 +63,7 @@ const style = StyleSheet.create({
   },
   container: {
     backgroundColor: '#fff',
-    width: Dimensions.get('window').width * 0.75,
+    width: Dimensions.get('window').width * 0.95,
     borderRadius: 10,
     ...Mixins.padding(20),
   },
