@@ -1,4 +1,6 @@
-async function parseLink(link: string) {
+import {Product} from '../types/product';
+
+async function parseLink(link: string): Promise<Product> {
   const res = await fetch(link);
 
   const html = await res.text();
@@ -9,7 +11,16 @@ async function parseLink(link: string) {
 
   const image = extractImage(html);
 
-  return {name, price, image};
+  return {
+    name,
+    price,
+    image,
+    seller: 'flipkart',
+    id:
+      Math.random().toString(16).slice(2, 10) +
+      Math.random().toString(16).slice(2, 10) +
+      Math.random().toString(16).slice(2, 10),
+  };
 }
 
 function extractImage(html: string) {
