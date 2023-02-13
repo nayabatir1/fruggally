@@ -33,7 +33,7 @@ function ModalStructure({visible, children, toggleModal}: Props): JSX.Element {
 
 const style = StyleSheet.create({
   backdrop: {
-    backgroundColor: 'rgba(150,90,120,0.8)',
+    backgroundColor: 'rgba(0,0,0,0.5)',
     flexGrow: 1,
     justifyContent: 'center',
     alignItems: 'center',

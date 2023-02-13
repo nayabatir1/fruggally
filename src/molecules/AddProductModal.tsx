@@ -7,35 +7,38 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
 
 import ModalStructure from '../atoms/ModalStructure';
+import useStore from '../store/Store';
 import {Colors, Mixins, Typography} from '../styles';
 import parseLink from '../utils/ParseLink';
 import PrimaryButton from './PrimaryButton';
 
-function AddProductModal(): JSX.Element {
-  const [showModal, setShowModal] = useState(false);
+type Props = {visible: boolean; toggleModal: () => void};
+
+function AddProductModal({visible, toggleModal}: Props): JSX.Element {
   const [text, setText] = useState('');
 
-  const toggleModal = useCallback(() => setShowModal(p => !p), []);
+  const {addProducts} = useStore();
 
   const closeModal = useCallback(async () => {
-    // setShowModal(false);
-    const d = await parseLink(text);
+    const product = await parseLink(text);
 
-    console.log(d);
-  }, [text]);
+    toggleModal();
+
+    addProducts(product);
+  }, [addProducts, text, toggleModal]);
 
   return (
     <>
-      <ModalStructure visible={showModal} toggleModal={toggleModal}>
+      <ModalStructure visible={visible} toggleModal={toggleModal}>
         <View style={style.container}>
           <Text style={style.label}>Enter product URL</Text>
 
           <TextInput
             style={style.textInput}
             multiline
+            numberOfLines={2}
             onChangeText={setText}
             value={text}
             placeholder="Product URL"
@@ -47,20 +50,11 @@ function AddProductModal(): JSX.Element {
           </TouchableOpacity>
         </View>
       </ModalStructure>
-
-      <TouchableOpacity style={style.plusIcon} onPress={toggleModal}>
-        <AntIcon name="pluscircle" size={40} color="#1faeff" />
-      </TouchableOpacity>
     </>
   );
 }
 
 const style = StyleSheet.create({
-  plusIcon: {
-    position: 'absolute',
-    bottom: 10,
-    right: 10,
-  },
   container: {
     backgroundColor: '#fff',
     width: Dimensions.get('window').width * 0.95,
