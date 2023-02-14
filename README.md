@@ -1,4 +1,4 @@
-# frugally - Product Price Tracker on Amazon and Flipkart
+# frugally - Amazon and Flipkart Product Price Tracker
 
 This is a mobile application. Main goal of this project is to allow use track price of there favorite product at a single place from [Amazon](http://www.amazon.in) and [Flipkart](https://www.flipkart.com/). Each product price will be updated at the regular interval or refetch details manually.
 
