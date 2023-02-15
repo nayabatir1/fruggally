@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Image, StyleSheet} from 'react-native';
 
 function Logo(): JSX.Element {
@@ -15,4 +15,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Logo;
+export default memo(Logo);

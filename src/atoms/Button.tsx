@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import type {ViewStyle, TextStyle} from 'react-native';
 import {Mixins, Typography} from '../styles';
@@ -25,4 +25,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default Button;
+export default memo(Button);
