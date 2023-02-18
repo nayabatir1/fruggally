@@ -14,6 +14,14 @@
       "sha1": "84d102488738b0ebbc7a5087973effbd54c95bd5"
     },
     {
+      "path": "src/assets/images/amazon-icon.svg",
+      "sha1": "bddcbb3931cb3e5cf3614360d5459fa0119db244"
+    },
+    {
+      "path": "src/assets/images/flipkart-icon.svg",
+      "sha1": "7afceec13ec3cee1fd0ba2984ca1e76811d948bc"
+    },
+    {
       "path": "src/assets/images/logo.png",
       "sha1": "e7b987571483f9e0148a383aaf3a14c87072df39"
     }
