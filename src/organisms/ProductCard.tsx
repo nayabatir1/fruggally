@@ -103,5 +103,3 @@ const style = (random: number) =>
       ...margin(0, 0, 0, 5),
     },
   });
-
-export default memo(ProductCard);
