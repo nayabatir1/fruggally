@@ -1,12 +1,16 @@
+import he from 'he';
+
 import {Product} from '../types/product';
 
-async function parseLink(link: string): Promise<Product | void> {
+async function ParseFlipkartLink(link: string): Promise<Product | void> {
   try {
     const res = await fetch(link);
 
     console.log(res.status);
 
-    const html = await res.text();
+    let html = await res.text();
+
+    html = he.decode(html);
 
     const price = extractPrice(html);
 
@@ -20,10 +24,7 @@ async function parseLink(link: string): Promise<Product | void> {
       image,
       seller: 'flipkart',
       link,
-      id:
-        Math.random().toString(16).slice(2, 10) +
-        Math.random().toString(16).slice(2, 10) +
-        Math.random().toString(16).slice(2, 10),
+      id: new Date().getTime().toString(),
     };
   } catch (err) {
     console.log(err);
@@ -68,4 +69,4 @@ function extractPrice(html: string) {
   return priceDiv.match(priceExp)?.[0].slice(1, -1) || '';
 }
 
-export default parseLink;
+export default ParseFlipkartLink;
