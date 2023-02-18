@@ -29,20 +29,27 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
       type = 'amazon';
     }
 
-    console.log({type});
-
     let product;
+
+    const [link] = text.match(/https:.+/gm) || [''];
+
+    if (!link) {
+      return;
+    }
+
+    setText(link);
 
     switch (type) {
       case 'flipkart':
-        product = await parseFlipkartLink(text);
+        product = await parseFlipkartLink(link);
         break;
 
       case 'amazon':
-        product = await ParseAmazonLink(text);
+        product = await ParseAmazonLink(link);
     }
 
     toggleModal();
+    setText('');
 
     if (product) {
       addProducts(product);
@@ -57,7 +64,6 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
 
           <TextInput
             style={style.textInput}
-            // multiline
             numberOfLines={2}
             onChangeText={setText}
             value={text}

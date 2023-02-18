@@ -3,11 +3,8 @@ import he from 'he';
 import {Product} from '../types/product';
 
 async function ParseFlipkartLink(link: string): Promise<Product | void> {
-  console.log(link);
   try {
     const res = await fetch(link);
-
-    console.log(res.status);
 
     let html = await res.text();
 
