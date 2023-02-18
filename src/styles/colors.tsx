@@ -1,20 +1,31 @@
-export const PRIMARY = '#ff598a';
-export const SECONDARY = '#0a043c';
+export const PRIMARY = '#136fff';
+export const SECONDARY = '#1faeff';
 export const WHITE = '#fff';
 export const BLACK = '#000';
-export const SELECTED = '#93329e';
-export const DANGER_DARK = '#D61C4E';
-export const DANGER_LIGHT = '#F96666';
-export const GUN_METAL = '#282A3A';
-export const PINK_LAVENDER = '#FFADBC';
-export const TWILIGHT_LAVENDER = '#863A6F';
-export const KIWI = '#82CD47';
-export const AZURE = '#ECFDFF';
-export const PAYMENT_GREEN = '#039855';
-export const TEA_GREEN = '#DEF5E5';
-export const GHOST_WHITE = '#f9FAFB';
-export const ANTI_FLASH_WHITE = '#f2f4f7';
-export const AMBER = '#FFBF00';
+export const DARK_COLORS = [
+  '#635985',
+  '#144272',
+  '#6D67E4',
+  '#810CA8',
+  '#3F0071',
+  '#5B4B8A',
+  '#16003B',
+  '#570530',
+  '#C996CC',
+  '#1C0C5B',
+];
+export const LIGHT_COLORS = [
+  '#ECF2FF',
+  '#F6E6C2',
+  '#D9ACF5',
+  '#D9ACF5',
+  '#FFD495',
+  '#E1D7C6',
+  '#D09CFA',
+  '#C0DEFF',
+  '#FFCAC8',
+  '#FFCAC8',
+];
 
 // ACTIONS
 export const SUCCESS = '#3adb76';

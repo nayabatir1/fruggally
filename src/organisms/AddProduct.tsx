@@ -3,7 +3,7 @@ import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 
 import AddProductModal from '../molecules/AddProductModal';
-import {Mixins, Typography} from '../styles';
+import {Colors, Mixins, Typography} from '../styles';
 
 function AddProduct(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
@@ -15,7 +15,7 @@ function AddProduct(): JSX.Element {
       <AddProductModal visible={showModal} toggleModal={toggleModal} />
 
       <TouchableOpacity style={style.plusIcon} onPress={toggleModal}>
-        <AntIcon name="pluscircle" size={50} color="#1faeff" />
+        <AntIcon name="pluscircle" size={50} color={Colors.SECONDARY} />
       </TouchableOpacity>
     </>
   );
@@ -28,17 +28,17 @@ const style = StyleSheet.create({
     right: 15,
   },
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     width: Dimensions.get('window').width * 0.95,
     borderRadius: 10,
     ...Mixins.padding(20),
   },
   label: {
-    color: '#000',
+    color: Colors.BLACK,
     ...Typography.FONT_REGULAR,
   },
   textInput: {
-    color: '#000',
+    color: Colors.BLACK,
     borderWidth: 1,
     borderRadius: 10,
     ...Mixins.margin(15, 0),

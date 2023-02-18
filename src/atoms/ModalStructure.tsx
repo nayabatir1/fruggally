@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import type {PropsWithChildren} from 'react';
 import {
   KeyboardAvoidingView,
@@ -40,4 +40,4 @@ const style = StyleSheet.create({
   },
 });
 
-export default ModalStructure;
+export default memo(ModalStructure);

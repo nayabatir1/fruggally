@@ -1,4 +1,4 @@
-import React, {useCallback, useState} from 'react';
+import React, {memo, useCallback, useState} from 'react';
 import {
   Dimensions,
   StyleSheet,
@@ -26,7 +26,9 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
 
     toggleModal();
 
-    addProducts(product);
+    if (product) {
+      addProducts(product);
+    }
   }, [addProducts, text, toggleModal]);
 
   return (
@@ -37,7 +39,7 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
 
           <TextInput
             style={style.textInput}
-            multiline
+            // multiline
             numberOfLines={2}
             onChangeText={setText}
             value={text}
@@ -56,21 +58,21 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
 
 const style = StyleSheet.create({
   container: {
-    backgroundColor: '#fff',
+    backgroundColor: Colors.WHITE,
     width: Dimensions.get('window').width * 0.95,
     borderRadius: 10,
     ...Mixins.padding(20),
   },
   label: {
-    color: '#000',
+    color: Colors.BLACK,
     ...Typography.FONT_REGULAR,
   },
   textInput: {
-    color: '#000',
+    color: Colors.BLACK,
     borderWidth: 1,
     borderRadius: 10,
     ...Mixins.margin(15, 0),
   },
 });
 
-export default AddProductModal;
+export default memo(AddProductModal);

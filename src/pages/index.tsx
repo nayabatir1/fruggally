@@ -1,9 +1,9 @@
 import React, {memo} from 'react';
-import {StyleSheet, Text, View} from 'react-native';
+import {View} from 'react-native';
 
 import AddProduct from '../organisms/AddProduct';
+import ProductCard from '../organisms/ProductCard';
 import useStore from '../store/Store';
-import {Colors} from '../styles';
 
 function Index(): JSX.Element {
   const {products} = useStore();
@@ -12,9 +12,7 @@ function Index(): JSX.Element {
     <>
       <View>
         {products.map(product => (
-          <Text style={style.black} key={product.id}>
-            {product.name}
-          </Text>
+          <ProductCard key={product.id} {...product} />
         ))}
       </View>
 
@@ -22,9 +20,5 @@ function Index(): JSX.Element {
     </>
   );
 }
-
-const style = StyleSheet.create({
-  black: {color: Colors.BLACK},
-});
 
 export default memo(Index);

@@ -1,7 +1,8 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {StyleSheet} from 'react-native';
 
 import Button from '../atoms/Button';
+import {Colors} from '../styles';
 
 type Props = {label: string};
 
@@ -17,12 +18,12 @@ function PrimaryButton({label}: Props): JSX.Element {
 
 const style = StyleSheet.create({
   wrapper: {
-    backgroundColor: '#136fff',
+    backgroundColor: Colors.PRIMARY,
     borderRadius: 10,
   },
   label: {
-    color: '#97e5ff',
+    color: Colors.WHITE,
   },
 });
 
-export default PrimaryButton;
+export default memo(PrimaryButton);

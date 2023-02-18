@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {View, Text, StyleSheet} from 'react-native';
 import {Colors, Typography} from '../styles';
 import {FONT_SIZE_24} from '../styles/typography';
@@ -11,8 +11,6 @@ function Name(): JSX.Element {
   );
 }
 
-// later change font to sassy frass
-
 const styles = StyleSheet.create({
   title: {
     color: Colors.BLACK,
@@ -21,4 +19,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Name;
+export default memo(Name);

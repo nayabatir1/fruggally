@@ -10,7 +10,7 @@ import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
-import Index from './src/pages/Index';
+import Index from './src/pages';
 import Logo from './src/atoms/Logo';
 import Name from './src/atoms/Name';
 
