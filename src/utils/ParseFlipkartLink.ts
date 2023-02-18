@@ -3,6 +3,7 @@ import he from 'he';
 import {Product} from '../types/product';
 
 async function ParseFlipkartLink(link: string): Promise<Product | void> {
+  console.log(link);
   try {
     const res = await fetch(link);
 
@@ -33,20 +34,18 @@ async function ParseFlipkartLink(link: string): Promise<Product | void> {
 
 function extractImage(html: string) {
   const exp1 = new RegExp(
-    /<img loading="eager" class="_396cs4 _2amPTt.*\/><\//gm,
+    /<img loading="eager" class="_396cs4 _2amPTt _3qGmMb".+?>/gm,
   );
 
-  const [img1] = html.match(exp1) || [''];
+  const exp2 = new RegExp(/<img class="_2r_T1I _396QI4".+?>/gm);
 
-  const exp2 = new RegExp(/src=".*.src/gm);
+  const [img1] = html.match(exp1) || html.match(exp2) || [''];
 
-  const [img2] = img1.match(exp2) || [''];
+  const exp3 = new RegExp(/src=".+?"/gm);
 
-  const exp3 = new RegExp(/".*\?/gm);
+  const [img2] = img1.match(exp3) || [''];
 
-  const [img3] = img2.match(exp3) || [''];
-
-  return img3.slice(1, -1);
+  return img2.slice(5, -1);
 }
 
 function extractName(html: string) {

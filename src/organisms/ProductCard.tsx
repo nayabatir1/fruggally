@@ -48,8 +48,8 @@ function ProductCard({name, seller, image, price}: Props): JSX.Element {
 const style = StyleSheet.create({
   container: {
     borderRadius: 10,
+    backgroundColor: '#fff',
     ...Mixins.padding(10),
-    ...Mixins.boxShadow('#000'),
   },
   icon: {
     position: 'absolute',
