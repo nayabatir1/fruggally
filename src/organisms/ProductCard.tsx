@@ -10,7 +10,7 @@ import {Product} from '../types/product';
 
 interface Props extends Product {}
 
-const RandomValue = Math.round(Math.random() * 10);
+const RandomValue = Math.round(Math.random() * 9);
 
 function ProductCard({name, seller, image, price}: Props): JSX.Element {
   return (

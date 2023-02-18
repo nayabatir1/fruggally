@@ -4,5 +4,5 @@ export type Product = {
   image: string;
   id: string;
   link: string;
-  seller: 'flipkart';
+  seller: 'flipkart' | 'amazon';
 };

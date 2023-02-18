@@ -11,7 +11,8 @@ import {
 import ModalStructure from '../atoms/ModalStructure';
 import useStore from '../store/Store';
 import {Colors, Mixins, Typography} from '../styles';
-import parseLink from '../utils/ParseLink';
+import ParseAmazonLink from '../utils/ParseAmazonLink';
+import parseFlipkartLink from '../utils/ParseFlipkartLink';
 import PrimaryButton from './PrimaryButton';
 
 type Props = {visible: boolean; toggleModal: () => void};
@@ -22,7 +23,24 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
   const {addProducts} = useStore();
 
   const closeModal = useCallback(async () => {
-    const product = await parseLink(text);
+    let type = 'flipkart';
+
+    if (!text.includes('flipkart')) {
+      type = 'amazon';
+    }
+
+    console.log({type});
+
+    let product;
+
+    switch (type) {
+      case 'flipkart':
+        product = await parseFlipkartLink(text);
+        break;
+
+      case 'amazon':
+        product = await ParseAmazonLink(text);
+    }
 
     toggleModal();
 
