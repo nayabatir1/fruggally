@@ -19,8 +19,6 @@ async function ParseAmazonLink(link: string): Promise<Product | void> {
 
     const image = extractImage(text);
 
-    console.log(image);
-
     return {
       name,
       price,
