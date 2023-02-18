@@ -2,6 +2,30 @@ export const PRIMARY = '#136fff';
 export const SECONDARY = '#1faeff';
 export const WHITE = '#fff';
 export const BLACK = '#000';
+export const DARK_COLORS = [
+  '#635985',
+  '#144272',
+  '#6D67E4',
+  '#810CA8',
+  '#3F0071',
+  '#5B4B8A',
+  '#16003B',
+  '#570530',
+  '#C996CC',
+  '#1C0C5B',
+];
+export const LIGHT_COLORS = [
+  '#ECF2FF',
+  '#F6E6C2',
+  '#D9ACF5',
+  '#D9ACF5',
+  '#FFD495',
+  '#E1D7C6',
+  '#D09CFA',
+  '#C0DEFF',
+  '#FFCAC8',
+  '#FFCAC8',
+];
 
 // ACTIONS
 export const SUCCESS = '#3adb76';

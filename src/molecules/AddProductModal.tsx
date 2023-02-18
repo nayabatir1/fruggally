@@ -26,7 +26,9 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
 
     toggleModal();
 
-    addProducts(product);
+    if (product) {
+      addProducts(product);
+    }
   }, [addProducts, text, toggleModal]);
 
   return (

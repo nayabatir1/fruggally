@@ -1,26 +1,33 @@
 import {Product} from '../types/product';
 
-async function parseLink(link: string): Promise<Product> {
-  const res = await fetch(link);
+async function parseLink(link: string): Promise<Product | void> {
+  try {
+    const res = await fetch(link);
 
-  const html = await res.text();
+    console.log(res.status);
 
-  const price = extractPrice(html);
+    const html = await res.text();
 
-  const name = extractName(html);
+    const price = extractPrice(html);
 
-  const image = extractImage(html);
+    const name = extractName(html);
 
-  return {
-    name,
-    price,
-    image,
-    seller: 'flipkart',
-    id:
-      Math.random().toString(16).slice(2, 10) +
-      Math.random().toString(16).slice(2, 10) +
-      Math.random().toString(16).slice(2, 10),
-  };
+    const image = extractImage(html);
+
+    return {
+      name,
+      price,
+      image,
+      seller: 'flipkart',
+      link,
+      id:
+        Math.random().toString(16).slice(2, 10) +
+        Math.random().toString(16).slice(2, 10) +
+        Math.random().toString(16).slice(2, 10),
+    };
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 function extractImage(html: string) {
