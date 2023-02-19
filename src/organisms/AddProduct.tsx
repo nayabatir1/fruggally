@@ -15,7 +15,7 @@ function AddProduct(): JSX.Element {
       <AddProductModal visible={showModal} toggleModal={toggleModal} />
 
       <TouchableOpacity style={style.plusIcon} onPress={toggleModal}>
-        <AntIcon name="pluscircle" size={50} color={Colors.PATRICKS_BLUE} />
+        <AntIcon name="plus" size={30} color={Colors.WHITE} />
       </TouchableOpacity>
     </>
   );
@@ -26,6 +26,9 @@ const style = StyleSheet.create({
     position: 'absolute',
     bottom: 15,
     right: 15,
+    backgroundColor: Colors.PATRICKS_BLUE,
+    borderRadius: 50,
+    padding: 10,
   },
 });
 

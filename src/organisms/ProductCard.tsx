@@ -1,34 +1,42 @@
 import React, {memo, useMemo} from 'react';
-import {Image, StyleSheet, Text, View} from 'react-native';
+import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
+import EntypoIcon from 'react-native-vector-icons/Entypo';
 
 import AmazonIcon from '../atoms/AmazonIcon';
 import FlipkartIcon from '../atoms/FlipkartIcon';
 import {Colors, Mixins, Typography} from '../styles';
 import {margin} from '../styles/mixins';
 import {Product} from '../types/product';
+import useStore from '../store/Store';
 
 interface Props extends Product {}
 
-function ProductCard({name, seller, image, price}: Props): JSX.Element {
+function ProductCard({name, seller, image, price, id}: Props): JSX.Element {
   const RandomValue = useMemo(() => Math.round(Math.random() * 9), []);
 
   const memoizedStyle = useMemo(() => style(RandomValue), [RandomValue]);
 
+  const {removeProduct} = useStore();
+
   return (
     <View style={memoizedStyle.container}>
-      <View
-        style={StyleSheet.flatten([memoizedStyle.icon, memoizedStyle.seller])}>
+      <View style={memoizedStyle.icon}>
         {seller === 'flipkart' ? (
           <FlipkartIcon size={20} />
         ) : (
           <AmazonIcon size={20} />
         )}
-      </View>
 
-      <View
-        style={StyleSheet.flatten([memoizedStyle.icon, memoizedStyle.link])}>
-        <EvilIcons name="external-link" color={Colors.BLACK} size={30} />
+        <View style={memoizedStyle.link}>
+          <EvilIcons name="external-link" color={Colors.BLACK} size={30} />
+
+          <EntypoIcon name="dot-single" color={Colors.BLACK} />
+
+          <Pressable onPress={() => removeProduct(id)}>
+            <EntypoIcon name="trash" color={Colors.ALERT} size={25} />
+          </Pressable>
+        </View>
       </View>
 
       <Image
@@ -39,7 +47,9 @@ function ProductCard({name, seller, image, price}: Props): JSX.Element {
         alt="product image"
       />
 
-      <Text style={memoizedStyle.name}>{name}</Text>
+      <Pressable onPress={() => console.log('name')}>
+        <Text style={memoizedStyle.name}>{name}</Text>
+      </Pressable>
 
       <View style={memoizedStyle.priceWrapper}>
         <Text style={memoizedStyle.currency}>{price.slice(0, 1)}</Text>
@@ -54,22 +64,26 @@ const style = (index: number) =>
     container: {
       borderRadius: 10,
       backgroundColor: Colors.MILK,
+      position: 'relative',
       ...Mixins.padding(10),
     },
     icon: {
-      position: 'absolute',
-      top: 10,
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      zIndex: 1,
     },
     seller: {
       left: 10,
     },
     link: {
-      right: 10,
+      flexDirection: 'row-reverse',
+      alignItems: 'center',
     },
     img: {
       height: 'auto',
       width: '100%',
       aspectRatio: 2 / 1,
+      marginTop: -25,
     },
     nameWrapper: {
       flexDirection: 'row',
