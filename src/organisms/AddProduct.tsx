@@ -1,9 +1,9 @@
 import React, {useCallback, useState, memo} from 'react';
-import {Dimensions, StyleSheet, TouchableOpacity} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
 import AntIcon from 'react-native-vector-icons/AntDesign';
 
 import AddProductModal from '../molecules/AddProductModal';
-import {Colors, Mixins, Typography} from '../styles';
+import {Colors} from '../styles';
 
 function AddProduct(): JSX.Element {
   const [showModal, setShowModal] = useState(false);
