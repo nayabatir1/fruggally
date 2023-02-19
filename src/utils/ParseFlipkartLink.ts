@@ -46,21 +46,21 @@ function extractImage(html: string) {
 }
 
 function extractName(html: string) {
-  const nameDivExp = new RegExp(/class="_2NKhZn">.+<\/p/gm);
+  const nameDivExp = new RegExp(/class="_2NKhZn">.+?<\/p/gm);
 
   const [nameClass] = html.match(nameDivExp) || [''];
 
-  const nameExp = new RegExp(/p>.*</gm);
+  const nameExp = new RegExp(/p>.+?</gm);
 
   return nameClass.match(nameExp)?.[0].slice(2, -1) || '';
 }
 
 function extractPrice(html: string) {
-  const priceDivExp = new RegExp(/class="_30jeq3 _16Jk6d">\S*<\//gm);
+  const priceDivExp = new RegExp(/class="_30jeq3 _16Jk6d">\S.+?<\//gm);
 
   const [priceDiv] = html.match(priceDivExp) || [''];
 
-  const priceExp = new RegExp(/>\S*</gm);
+  const priceExp = new RegExp(/>\S.+?</gm);
 
   return priceDiv.match(priceExp)?.[0].slice(1, -1) || '';
 }
