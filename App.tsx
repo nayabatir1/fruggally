@@ -1,10 +1,3 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
 import React, {useCallback} from 'react';
 import {StatusBar} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
@@ -12,25 +5,33 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Index from './src/pages';
 import Logo from './src/atoms/Logo';
-import Name from './src/atoms/Name';
+
+import {Colors, Typography} from './src/styles';
 
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   const headerLeft = useCallback(() => <Logo />, []);
-  const headerTitle = useCallback(() => <Name />, []);
 
   return (
     <NavigationContainer>
-      <StatusBar barStyle="dark-content" backgroundColor="#1faeff" />
+      <StatusBar
+        barStyle="light-content"
+        backgroundColor={Colors.PATRICKS_BLUE}
+      />
 
       <Stack.Navigator
         screenOptions={{
           headerLeft: headerLeft,
-          headerTitle: headerTitle,
+          title: 'frugally',
           headerTitleAlign: 'center',
+          headerTitleStyle: {
+            fontWeight: Typography.FONT_WEIGHT_BOLDER,
+            color: Colors.WHITE,
+          },
+          headerStyle: {backgroundColor: Colors.PATRICKS_BLUE},
           contentStyle: {
-            backgroundColor: '#F7EFE5',
+            backgroundColor: Colors.ULCA_BLUE,
             paddingHorizontal: 10,
             paddingVertical: 10,
           },

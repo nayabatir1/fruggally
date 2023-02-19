@@ -1,5 +1,6 @@
-export const PRIMARY = '#136fff';
-export const SECONDARY = '#1faeff';
+export const PATRICKS_BLUE = '#161D6F';
+export const ULCA_BLUE = '#4B6587';
+export const MILK = '#FFFBF5';
 export const WHITE = '#fff';
 export const BLACK = '#000';
 export const DARK_COLORS = [

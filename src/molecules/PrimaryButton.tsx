@@ -18,7 +18,7 @@ function PrimaryButton({label}: Props): JSX.Element {
 
 const style = StyleSheet.create({
   wrapper: {
-    backgroundColor: Colors.PRIMARY,
+    backgroundColor: Colors.PATRICKS_BLUE,
     borderRadius: 10,
   },
   label: {
