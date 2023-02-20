@@ -1,5 +1,5 @@
 import React, {memo, useMemo} from 'react';
-import {Image, Pressable, StyleSheet, Text, View} from 'react-native';
+import {Image, Linking, Pressable, StyleSheet, Text, View} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
@@ -12,7 +12,14 @@ import useStore from '../store/Store';
 
 interface Props extends Product {}
 
-function ProductCard({name, seller, image, price, id}: Props): JSX.Element {
+function ProductCard({
+  name,
+  seller,
+  image,
+  price,
+  id,
+  link,
+}: Props): JSX.Element {
   const RandomValue = useMemo(() => Math.round(Math.random() * 9), []);
 
   const memoizedStyle = useMemo(() => style(RandomValue), [RandomValue]);
@@ -29,7 +36,9 @@ function ProductCard({name, seller, image, price, id}: Props): JSX.Element {
         )}
 
         <View style={memoizedStyle.link}>
-          <EvilIcons name="external-link" color={Colors.BLACK} size={30} />
+          <Pressable onPress={() => Linking.openURL(link)}>
+            <EvilIcons name="external-link" color={Colors.BLACK} size={30} />
+          </Pressable>
 
           <EntypoIcon name="dot-single" color={Colors.BLACK} />
 
