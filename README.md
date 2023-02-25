@@ -1,6 +1,6 @@
 # frugally - Amazon and Flipkart Product Price Tracker
 
-This is my first React Native unofficial project. The motivation for this project is, there are two main ecommerce platform in India [Amazon](https://amazon.in) and [Flipkart](https://www.flipkart.com). I needed to keep track of prices but I don't want to track them individually through each platform wishlist. Ofcource you can use third party service but they show a lot of ads and track user data. I need something that is light weight and donot track user data, no headache of login/singup etc.
+This is my first React Native unofficial project. The motivation for this project is, there are two main ecommerce platform in India [Amazon](https://amazon.in) and [Flipkart](https://www.flipkart.com). I needed to keep track of prices but I don't want to track them individually through each platform wishlist. Ofcource you can use third party service but they show a lot of ads and track user data. I need something that is light weight and donot track user data, no headache of login/singup etc. This project is following Atomic design pattern.
 
 ## Table of contents
 
