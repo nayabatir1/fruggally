@@ -13,7 +13,7 @@ function Index(): JSX.Element {
     <>
       <View>
         {isRefetching ? (
-          <Text style={style.refetch}>Refetching products</Text>
+          <Text style={style.refetch}>Refetching products...</Text>
         ) : (
           <FlatList
             data={products}

@@ -20,16 +20,12 @@ type Props = {visible: boolean; toggleModal: () => void};
 
 function AddProductModal({visible, toggleModal}: Props): JSX.Element {
   const [productLink, setProductLink] = useState('');
-  const [buttonText, setButtonText] = useState('Submit');
+  const [isFetching, setIsFetching] = useState(false);
 
   const {addProducts} = useStore();
 
   const closeModal = useCallback(async () => {
-    if (!buttonText.includes('Submit')) {
-      return;
-    }
-
-    setButtonText('Fetching...');
+    setIsFetching(true);
     let type = 'flipkart';
 
     if (!productLink.includes('flipkart')) {
@@ -41,8 +37,8 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
     const [link] = productLink.match(/https:.+/gm) || [''];
 
     if (!link) {
+      setIsFetching(false);
       Alert.alert('Invalid link', "Check the link you've provided");
-      setButtonText('Submit');
       return;
     }
 
@@ -62,9 +58,9 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
     if (product) {
       addProducts(product);
     }
-    setButtonText('Submit');
+    setIsFetching(false);
     toggleModal();
-  }, [addProducts, buttonText, productLink, toggleModal]);
+  }, [addProducts, productLink, toggleModal]);
 
   return (
     <>
@@ -81,9 +77,13 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
             placeholderTextColor={Colors.GRAY_MEDIUM}
           />
 
-          <TouchableOpacity onPress={closeModal}>
-            <PrimaryButton label={buttonText} />
-          </TouchableOpacity>
+          {isFetching ? (
+            <PrimaryButton label="Fetching..." />
+          ) : (
+            <TouchableOpacity onPress={closeModal}>
+              <PrimaryButton label="Submit" />
+            </TouchableOpacity>
+          )}
         </View>
       </ModalStructure>
     </>
