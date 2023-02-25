@@ -6,7 +6,7 @@ import {Colors, Mixins} from '../styles';
 
 type Props = {label: string};
 
-function PrimaryButton({label}: Props): JSX.Element {
+function DangerButton({label}: Props): JSX.Element {
   return (
     <Button
       label={label}
@@ -18,13 +18,13 @@ function PrimaryButton({label}: Props): JSX.Element {
 
 const style = StyleSheet.create({
   wrapper: {
-    backgroundColor: Colors.PATRICKS_BLUE,
+    backgroundColor: Colors.LIGHT_CORAL,
     borderRadius: 10,
-    ...Mixins.padding(15, 0),
+    ...Mixins.padding(10, 15),
   },
   label: {
-    color: Colors.WHITE,
+    color: Colors.BOSTON_RED,
   },
 });
 
-export default memo(PrimaryButton);
+export default memo(DangerButton);

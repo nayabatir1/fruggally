@@ -5,11 +5,12 @@ import EntypoIcon from 'react-native-vector-icons/Entypo';
 
 import {Colors, Mixins, Typography} from '../styles';
 import {Product} from '../types/product';
-import useStore from '../store/Store';
 import useLastUpdated from '../hooks/LastUpdated';
 import SellerIcon from '../molecules/SellerIcon';
 
-interface Props extends Product {}
+interface Props extends Product {
+  setProductId: (arg0: string | null) => void;
+}
 
 function ProductCard({
   name,
@@ -19,6 +20,7 @@ function ProductCard({
   id,
   link,
   lastFetched,
+  setProductId,
 }: Props): JSX.Element {
   const RandomValue = useMemo(
     () => Math.round(Math.random() * (Colors.DARK_COLORS.length - 1)),
@@ -31,7 +33,10 @@ function ProductCard({
     Linking.openURL(link);
   }, [link]);
 
-  const {removeProduct} = useStore();
+  const markProductForDeletion = useCallback(
+    () => setProductId(id),
+    [id, setProductId],
+  );
 
   const lastUpdated = useLastUpdated(lastFetched);
 
@@ -47,7 +52,7 @@ function ProductCard({
 
           <EntypoIcon name="dot-single" color={Colors.BLACK} />
 
-          <Pressable onPress={() => removeProduct(id)}>
+          <Pressable onPress={markProductForDeletion}>
             <EntypoIcon name="trash" color={Colors.ALERT} size={25} />
           </Pressable>
         </View>

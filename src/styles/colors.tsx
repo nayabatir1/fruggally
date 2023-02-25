@@ -3,6 +3,8 @@ export const ULCA_BLUE = '#4B6587';
 export const MILK = '#FFFBF5';
 export const WHITE = '#fff';
 export const BLACK = '#000';
+export const BOSTON_RED = '#CD0404';
+export const LIGHT_CORAL = '#f58187';
 export const DARK_COLORS = [
   '#635985',
   '#144272',

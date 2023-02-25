@@ -1,4 +1,5 @@
 import React, {memo} from 'react';
+
 import {StyleSheet} from 'react-native';
 
 import Button from '../atoms/Button';
@@ -6,7 +7,7 @@ import {Colors, Mixins} from '../styles';
 
 type Props = {label: string};
 
-function PrimaryButton({label}: Props): JSX.Element {
+function GrayButton({label}: Props): JSX.Element {
   return (
     <Button
       label={label}
@@ -18,13 +19,13 @@ function PrimaryButton({label}: Props): JSX.Element {
 
 const style = StyleSheet.create({
   wrapper: {
-    backgroundColor: Colors.PATRICKS_BLUE,
+    backgroundColor: Colors.GRAY_LIGHT,
     borderRadius: 10,
-    ...Mixins.padding(15, 0),
+    ...Mixins.padding(10, 15),
   },
   label: {
-    color: Colors.WHITE,
+    color: Colors.GRAY_DARK,
   },
 });
 
-export default memo(PrimaryButton);
+export default memo(GrayButton);
