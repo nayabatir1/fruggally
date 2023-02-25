@@ -3,12 +3,11 @@ import {Image, Linking, Pressable, StyleSheet, Text, View} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
 
-import AmazonIcon from '../atoms/AmazonIcon';
-import FlipkartIcon from '../atoms/FlipkartIcon';
 import {Colors, Mixins, Typography} from '../styles';
 import {Product} from '../types/product';
 import useStore from '../store/Store';
 import useLastUpdated from '../hooks/LastUpdated';
+import SellerIcon from '../molecules/SellerIcon';
 
 interface Props extends Product {}
 
@@ -39,11 +38,7 @@ function ProductCard({
   return (
     <View style={memoizedStyle.container}>
       <View style={memoizedStyle.icon}>
-        {seller === 'flipkart' ? (
-          <FlipkartIcon size={20} />
-        ) : (
-          <AmazonIcon size={20} />
-        )}
+        <SellerIcon seller={seller} />
 
         <View style={memoizedStyle.link}>
           <Pressable onPress={openLink}>
