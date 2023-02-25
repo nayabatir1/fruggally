@@ -6,13 +6,13 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import Index from './src/pages';
 import Logo from './src/atoms/Logo';
 import {Colors, Typography} from './src/styles';
-import HeaderRight from './src/atoms/HeaderRight';
+import AddProduct from './src/organisms/AddProduct';
 
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   const headerLeft = useCallback(() => <Logo />, []);
-  const headerRight = useCallback(() => <HeaderRight />, []);
+  const headerRight = useCallback(() => <AddProduct />, []);
 
   return (
     <NavigationContainer>

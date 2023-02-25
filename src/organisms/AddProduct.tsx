@@ -1,6 +1,6 @@
 import React, {useCallback, useState, memo} from 'react';
-import {StyleSheet, TouchableOpacity} from 'react-native';
-import AntIcon from 'react-native-vector-icons/AntDesign';
+import {Pressable} from 'react-native';
+import EntypeIcons from 'react-native-vector-icons/Entypo';
 
 import AddProductModal from '../molecules/AddProductModal';
 import {Colors} from '../styles';
@@ -12,24 +12,13 @@ function AddProduct(): JSX.Element {
 
   return (
     <>
-      <AddProductModal visible={showModal} toggleModal={toggleModal} />
+      <Pressable onPress={toggleModal}>
+        <EntypeIcons name="add-to-list" size={25} color={Colors.WHITE} />
+      </Pressable>
 
-      <TouchableOpacity style={style.plusIcon} onPress={toggleModal}>
-        <AntIcon name="plus" size={30} color={Colors.WHITE} />
-      </TouchableOpacity>
+      <AddProductModal visible={showModal} toggleModal={toggleModal} />
     </>
   );
 }
-
-const style = StyleSheet.create({
-  plusIcon: {
-    position: 'absolute',
-    bottom: 40,
-    right: 15,
-    backgroundColor: Colors.PATRICKS_BLUE,
-    borderRadius: 50,
-    padding: 10,
-  },
-});
 
 export default memo(AddProduct);
