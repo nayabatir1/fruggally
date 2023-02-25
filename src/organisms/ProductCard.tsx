@@ -2,12 +2,16 @@ import React, {memo, useCallback, useMemo} from 'react';
 import {Image, Linking, Pressable, StyleSheet, Text, View} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 
 import AmazonIcon from '../atoms/AmazonIcon';
 import FlipkartIcon from '../atoms/FlipkartIcon';
 import {Colors, Mixins, Typography} from '../styles';
 import {Product} from '../types/product';
 import useStore from '../store/Store';
+
+dayjs.extend(relativeTime);
 
 interface Props extends Product {}
 
@@ -18,6 +22,7 @@ function ProductCard({
   price,
   id,
   link,
+  lastFetched,
 }: Props): JSX.Element {
   const RandomValue = useMemo(
     () => Math.round(Math.random() * (Colors.DARK_COLORS.length - 1)),
@@ -29,6 +34,12 @@ function ProductCard({
   const openLink = useCallback(() => {
     Linking.openURL(link);
   }, [link]);
+
+  const lastUpdated = useMemo(() => {
+    var today = dayjs(new Date());
+
+    return dayjs(lastFetched).from(today);
+  }, [lastFetched]);
 
   const {removeProduct} = useStore();
 
@@ -68,6 +79,8 @@ function ProductCard({
         <Text style={memoizedStyle.currency}>{price.slice(0, 1)}</Text>
         <Text style={memoizedStyle.price}>{price.slice(1)}</Text>
       </View>
+
+      <Text style={memoizedStyle.lastFetch}>{lastUpdated}</Text>
     </View>
   );
 }
@@ -125,6 +138,12 @@ const style = (index: number) =>
       color: Colors.BLACK,
       fontSize: Typography.FONT_SIZE_18,
       ...Mixins.margin(0, 0, 0, 5),
+    },
+    lastFetch: {
+      color: Colors.GRAY_DARK,
+      position: 'absolute',
+      bottom: 10,
+      right: 10,
     },
   });
 
