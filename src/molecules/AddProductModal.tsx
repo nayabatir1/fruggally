@@ -1,5 +1,6 @@
 import React, {memo, useCallback, useState} from 'react';
 import {
+  Alert,
   Dimensions,
   StyleSheet,
   Text,
@@ -18,26 +19,34 @@ import PrimaryButton from './PrimaryButton';
 type Props = {visible: boolean; toggleModal: () => void};
 
 function AddProductModal({visible, toggleModal}: Props): JSX.Element {
-  const [text, setText] = useState('');
+  const [productLink, setProductLink] = useState('');
+  const [buttonText, setButtonText] = useState('Submit');
 
   const {addProducts} = useStore();
 
   const closeModal = useCallback(async () => {
+    if (!buttonText.includes('Submit')) {
+      return;
+    }
+
+    setButtonText('Fetching...');
     let type = 'flipkart';
 
-    if (!text.includes('flipkart')) {
+    if (!productLink.includes('flipkart')) {
       type = 'amazon';
     }
 
     let product;
 
-    const [link] = text.match(/https:.+/gm) || [''];
+    const [link] = productLink.match(/https:.+/gm) || [''];
 
     if (!link) {
+      Alert.alert('Invalid link', "Check the link you've provided");
+      setButtonText('Submit');
       return;
     }
 
-    setText(link);
+    setProductLink(link);
 
     switch (type) {
       case 'flipkart':
@@ -48,13 +57,14 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
         product = await ParseAmazonLink(link);
     }
 
-    toggleModal();
-    setText('');
+    setProductLink('');
 
     if (product) {
       addProducts(product);
     }
-  }, [addProducts, text, toggleModal]);
+    setButtonText('Submit');
+    toggleModal();
+  }, [addProducts, buttonText, productLink, toggleModal]);
 
   return (
     <>
@@ -65,14 +75,14 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
           <TextInput
             style={style.textInput}
             numberOfLines={2}
-            onChangeText={setText}
-            value={text}
+            onChangeText={setProductLink}
+            value={productLink}
             placeholder="Product URL"
             placeholderTextColor={Colors.GRAY_MEDIUM}
           />
 
           <TouchableOpacity onPress={closeModal}>
-            <PrimaryButton label="Submit" />
+            <PrimaryButton label={buttonText} />
           </TouchableOpacity>
         </View>
       </ModalStructure>
