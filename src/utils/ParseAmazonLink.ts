@@ -5,13 +5,7 @@ import {Product} from '../types/product';
 
 async function ParseAmazonLink(link: string): Promise<Product | void> {
   try {
-    const home = await fetch('http://www.amazon.in');
-
-    const headers = new Headers();
-
-    for (const [k, v] of Object.entries(home.headers.map)) {
-      headers.append(k, v);
-    }
+    const {headers} = await fetch('http://www.amazon.in');
 
     const res = await fetch(link, {headers});
 

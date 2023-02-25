@@ -5,15 +5,9 @@ import {Product} from '../types/product';
 
 async function ParseFlipkartLink(link: string): Promise<Product | void> {
   try {
-    const home = await fetch('http://flipkart.com');
-
-    const headers = new Headers();
-
-    for (const [k, v] of Object.entries(home.headers.map)) {
-      headers.append(k, v);
-    }
-
     const res = await fetch(link);
+
+    console.log(res.status);
 
     let html = await res.text();
 
