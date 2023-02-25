@@ -9,8 +9,6 @@ import useStore from '../store/Store';
 function Index(): JSX.Element {
   const [productId, setProductId] = useState<null | string>(null);
 
-  console.log(productId);
-
   const {products, isRefetching, refetchProducts} = useStore();
 
   return (
