@@ -62,9 +62,7 @@ function ProductCard({
         alt="product image"
       />
 
-      <Pressable onPress={() => console.log('name')}>
-        <Text style={memoizedStyle.name}>{name}</Text>
-      </Pressable>
+      <Text style={memoizedStyle.name}>{name}</Text>
 
       <View style={memoizedStyle.priceWrapper}>
         <Text style={memoizedStyle.currency}>{price.slice(0, 1)}</Text>

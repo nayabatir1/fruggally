@@ -29,10 +29,7 @@ const useStore = create<Store, [['zustand/persist', unknown]]>(
               data = await ParseFlipkartLink(products[i].link);
               break;
             case 'amazon':
-              console.log(products[i]);
-
               data = await ParseAmazonLink(products[i].link);
-              console.log(data);
           }
 
           if (data) {

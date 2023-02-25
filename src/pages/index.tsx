@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {View, FlatList, Text} from 'react-native';
+import {View, FlatList, Text, StyleSheet} from 'react-native';
 
 import Divider from '../atoms/Divider';
 import AddProduct from '../organisms/AddProduct';
@@ -13,7 +13,7 @@ function Index(): JSX.Element {
     <>
       <View>
         {isRefetching ? (
-          <Text>Refetching products</Text>
+          <Text style={style.refetch}>Refetching products</Text>
         ) : (
           <FlatList
             data={products}
@@ -28,5 +28,11 @@ function Index(): JSX.Element {
     </>
   );
 }
+
+const style = StyleSheet.create({
+  refetch: {
+    textAlign: 'center',
+  },
+});
 
 export default memo(Index);
