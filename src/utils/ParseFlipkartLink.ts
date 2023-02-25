@@ -7,8 +7,6 @@ async function ParseFlipkartLink(link: string): Promise<Product | void> {
   try {
     const res = await fetch(link);
 
-    console.log(res.status);
-
     let html = await res.text();
 
     html = he.decode(html);
