@@ -14,6 +14,7 @@ import useStore from '../store/Store';
 import {Colors, Mixins, Typography} from '../styles';
 import ParseAmazonLink from '../utils/ParseAmazonLink';
 import parseFlipkartLink from '../utils/ParseFlipkartLink';
+import GrayButton from './GrayButton';
 import PrimaryButton from './PrimaryButton';
 
 type Props = {visible: boolean; toggleModal: () => void};
@@ -78,7 +79,7 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
           />
 
           {isFetching ? (
-            <PrimaryButton label="Fetching..." />
+            <GrayButton label="Fetching..." />
           ) : (
             <TouchableOpacity onPress={closeModal}>
               <PrimaryButton label="Submit" />
