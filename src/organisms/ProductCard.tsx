@@ -2,16 +2,13 @@ import React, {memo, useCallback, useMemo} from 'react';
 import {Image, Linking, Pressable, StyleSheet, Text, View} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
-import dayjs from 'dayjs';
-import relativeTime from 'dayjs/plugin/relativeTime';
 
 import AmazonIcon from '../atoms/AmazonIcon';
 import FlipkartIcon from '../atoms/FlipkartIcon';
 import {Colors, Mixins, Typography} from '../styles';
 import {Product} from '../types/product';
 import useStore from '../store/Store';
-
-dayjs.extend(relativeTime);
+import useLastUpdated from '../hooks/LastUpdated';
 
 interface Props extends Product {}
 
@@ -35,13 +32,9 @@ function ProductCard({
     Linking.openURL(link);
   }, [link]);
 
-  const lastUpdated = useMemo(() => {
-    var today = dayjs(new Date());
-
-    return dayjs(lastFetched).from(today);
-  }, [lastFetched]);
-
   const {removeProduct} = useStore();
+
+  const lastUpdated = useLastUpdated(lastFetched);
 
   return (
     <View style={memoizedStyle.container}>

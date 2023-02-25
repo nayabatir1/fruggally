@@ -24,7 +24,7 @@ function AddProduct(): JSX.Element {
 const style = StyleSheet.create({
   plusIcon: {
     position: 'absolute',
-    bottom: 15,
+    bottom: 40,
     right: 15,
     backgroundColor: Colors.PATRICKS_BLUE,
     borderRadius: 50,
