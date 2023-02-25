@@ -1,9 +1,18 @@
 import he from 'he';
+import {Alert} from 'react-native';
 
 import {Product} from '../types/product';
 
 async function ParseFlipkartLink(link: string): Promise<Product | void> {
   try {
+    const home = await fetch('http://flipkart.com');
+
+    const headers = new Headers();
+
+    for (const [k, v] of Object.entries(home.headers.map)) {
+      headers.append(k, v);
+    }
+
     const res = await fetch(link);
 
     let html = await res.text();
@@ -16,16 +25,19 @@ async function ParseFlipkartLink(link: string): Promise<Product | void> {
 
     const image = extractImage(html);
 
+    const date = new Date();
+
     return {
       name,
       price,
       image,
       seller: 'flipkart',
       link,
-      id: new Date().getTime().toString(),
+      id: date.getTime().toString(),
+      lastFetched: date,
     };
   } catch (err) {
-    console.log(err);
+    Alert.alert('Unale to fetch product', err?.message);
   }
 }
 

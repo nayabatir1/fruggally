@@ -1,10 +1,19 @@
 import he from 'he';
+import {Alert} from 'react-native';
 
 import {Product} from '../types/product';
 
 async function ParseAmazonLink(link: string): Promise<Product | void> {
   try {
-    const res = await fetch(link);
+    const home = await fetch('http://www.amazon.in');
+
+    const headers = new Headers();
+
+    for (const [k, v] of Object.entries(home.headers.map)) {
+      headers.append(k, v);
+    }
+
+    const res = await fetch(link, {headers});
 
     let text = await res.text();
 
@@ -16,16 +25,19 @@ async function ParseAmazonLink(link: string): Promise<Product | void> {
 
     const image = extractImage(text);
 
+    const date = new Date();
+
     return {
       name,
       price,
       image,
       seller: 'amazon',
       link,
-      id: new Date().getTime().toString(),
+      id: date.getTime().toString(),
+      lastFetched: date,
     };
   } catch (err) {
-    console.log(err);
+    Alert.alert('Unale to fetch product', err?.message);
   }
 }
 

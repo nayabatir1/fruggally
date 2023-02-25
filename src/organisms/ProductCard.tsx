@@ -1,4 +1,4 @@
-import React, {memo, useMemo} from 'react';
+import React, {memo, useCallback, useMemo} from 'react';
 import {Image, Linking, Pressable, StyleSheet, Text, View} from 'react-native';
 import EvilIcons from 'react-native-vector-icons/EvilIcons';
 import EntypoIcon from 'react-native-vector-icons/Entypo';
@@ -6,7 +6,6 @@ import EntypoIcon from 'react-native-vector-icons/Entypo';
 import AmazonIcon from '../atoms/AmazonIcon';
 import FlipkartIcon from '../atoms/FlipkartIcon';
 import {Colors, Mixins, Typography} from '../styles';
-import {margin} from '../styles/mixins';
 import {Product} from '../types/product';
 import useStore from '../store/Store';
 
@@ -20,9 +19,16 @@ function ProductCard({
   id,
   link,
 }: Props): JSX.Element {
-  const RandomValue = useMemo(() => Math.round(Math.random() * 9), []);
+  const RandomValue = useMemo(
+    () => Math.round(Math.random() * (Colors.DARK_COLORS.length - 1)),
+    [],
+  );
 
   const memoizedStyle = useMemo(() => style(RandomValue), [RandomValue]);
+
+  const openLink = useCallback(() => {
+    Linking.openURL(link);
+  }, [link]);
 
   const {removeProduct} = useStore();
 
@@ -36,7 +42,7 @@ function ProductCard({
         )}
 
         <View style={memoizedStyle.link}>
-          <Pressable onPress={() => Linking.openURL(link)}>
+          <Pressable onPress={openLink}>
             <EvilIcons name="external-link" color={Colors.BLACK} size={30} />
           </Pressable>
 
@@ -107,8 +113,8 @@ const style = (index: number) =>
     priceWrapper: {
       flexDirection: 'row',
       alignItems: 'center',
-      backgroundColor: Colors.LIGHT_COLORS[index],
       alignSelf: 'flex-start',
+      backgroundColor: Colors.LIGHT_COLORS[index],
       borderRadius: 10,
       ...Mixins.padding(5, 10),
     },
@@ -120,7 +126,7 @@ const style = (index: number) =>
     price: {
       color: Colors.BLACK,
       fontSize: Typography.FONT_SIZE_18,
-      ...margin(0, 0, 0, 5),
+      ...Mixins.margin(0, 0, 0, 5),
     },
   });
 

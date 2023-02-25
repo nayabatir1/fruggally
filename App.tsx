@@ -5,13 +5,14 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 
 import Index from './src/pages';
 import Logo from './src/atoms/Logo';
-
 import {Colors, Typography} from './src/styles';
+import HeaderRight from './src/atoms/HeaderRight';
 
 const Stack = createNativeStackNavigator();
 
 function App(): JSX.Element {
   const headerLeft = useCallback(() => <Logo />, []);
+  const headerRight = useCallback(() => <HeaderRight />, []);
 
   return (
     <NavigationContainer>
@@ -23,6 +24,7 @@ function App(): JSX.Element {
       <Stack.Navigator
         screenOptions={{
           headerLeft: headerLeft,
+          headerRight: headerRight,
           title: 'frugally',
           headerTitleAlign: 'center',
           headerTitleStyle: {

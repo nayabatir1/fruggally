@@ -5,4 +5,5 @@ export type Product = {
   id: string;
   link: string;
   seller: 'flipkart' | 'amazon';
+  lastFetched: Date;
 };
