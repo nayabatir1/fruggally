@@ -32,11 +32,9 @@ Users should be able to:
 
 ### Screenshot
 
-![screenshot](./images/1.png)
-
-![screenshot](./images/2.png)
-
-![screenshot](./images/3.png)
+<img src="./images/1.png" width="200" height="400">
+<img src="./images/2.png" width="200" height="400">
+<img src="./images/3.png" width="200" height="400">
 
 ## My process
 
