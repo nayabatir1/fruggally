@@ -18,16 +18,6 @@ import parseFlipkartLink from '../utils/ParseFlipkartLink';
 import GrayButton from './GrayButton';
 import PrimaryButton from './PrimaryButton';
 
-const ONE_SECOND_IN_MS = 1000;
-
-const PATTERN = [
-  1 * ONE_SECOND_IN_MS,
-  0,
-  1 * ONE_SECOND_IN_MS,
-  0,
-  1 * ONE_SECOND_IN_MS,
-];
-
 type Props = {visible: boolean; toggleModal: () => void};
 
 function AddProductModal({visible, toggleModal}: Props): JSX.Element {
@@ -68,7 +58,7 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
     setProductLink('');
 
     if (product) {
-      Vibration.vibrate([100, 300, 100, 300]);
+      Vibration.vibrate([100, 200, 100, 200]);
       addProducts(product);
     }
     setIsFetching(false);
