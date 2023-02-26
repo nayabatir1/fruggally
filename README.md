@@ -25,7 +25,7 @@ Users should be able to:
 - [x] Pull down to refetch products
 - [x] Last fetched relative. It will update after certain interval
 - [x] Deeplinking to open product directly on respective app
-- [x] Vibrate on production addition
+- [x] Vibrate on product addition
 - [] Product can also be added directly by sharing
 - [] On orientation change update UI
 - [] Swipe left/right to remove product
