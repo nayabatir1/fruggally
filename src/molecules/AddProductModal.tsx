@@ -1,20 +1,16 @@
 import React, {memo, useCallback, useState} from 'react';
 import {
-  Alert,
   Dimensions,
   StyleSheet,
   Text,
   TextInput,
   TouchableOpacity,
-  Vibration,
   View,
 } from 'react-native';
 
 import ModalStructure from '../atoms/ModalStructure';
-import useStore from '../store/Store';
 import {Colors, Mixins, Typography} from '../styles';
-import ParseAmazonLink from '../utils/ParseAmazonLink';
-import parseFlipkartLink from '../utils/ParseFlipkartLink';
+import AddProduct from '../utils/AddProduct';
 import GrayButton from './GrayButton';
 import PrimaryButton from './PrimaryButton';
 
@@ -24,46 +20,15 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
   const [productLink, setProductLink] = useState('');
   const [isFetching, setIsFetching] = useState(false);
 
-  const {addProducts} = useStore();
-
   const closeModal = useCallback(async () => {
     setIsFetching(true);
-    let type = 'flipkart';
 
-    if (!productLink.includes('flipkart')) {
-      type = 'amazon';
-    }
+    await AddProduct(productLink);
 
-    let product;
-
-    const [link] = productLink.match(/https:.+/gm) || [''];
-
-    if (!link) {
-      setIsFetching(false);
-      Alert.alert('Invalid link', "Check the link you've provided");
-      return;
-    }
-
-    setProductLink(link);
-
-    switch (type) {
-      case 'flipkart':
-        product = await parseFlipkartLink(link);
-        break;
-
-      case 'amazon':
-        product = await ParseAmazonLink(link);
-    }
-
-    setProductLink('');
-
-    if (product) {
-      Vibration.vibrate([100, 200, 100, 200]);
-      addProducts(product);
-    }
     setIsFetching(false);
+    setProductLink('');
     toggleModal();
-  }, [addProducts, productLink, toggleModal]);
+  }, [productLink, toggleModal]);
 
   return (
     <>
