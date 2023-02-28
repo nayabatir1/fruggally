@@ -69,8 +69,14 @@ function ProductCardPortrait({
       <Text style={memoizedStyle.name}>{name}</Text>
 
       <View style={memoizedStyle.priceWrapper}>
-        <Text style={memoizedStyle.currency}>{price.slice(0, 1)}</Text>
-        <Text style={memoizedStyle.price}>{price.slice(1)}</Text>
+        {price.length > 1 ? (
+          <>
+            <Text style={memoizedStyle.currency}>{price.slice(0, 1)}</Text>
+            <Text style={memoizedStyle.price}>{price.slice(1)}</Text>
+          </>
+        ) : (
+          <Text style={memoizedStyle.notAvail}>N.A.</Text>
+        )}
       </View>
 
       <Text style={memoizedStyle.lastFetch}>{lastUpdated}</Text>
@@ -131,6 +137,10 @@ const style = (index: number) =>
       color: Colors.BLACK,
       fontSize: Typography.FONT_SIZE_18,
       ...Mixins.margin(0, 0, 0, 5),
+    },
+    notAvail: {
+      color: Colors.BLACK,
+      fontSize: Typography.FONT_SIZE_18,
     },
     lastFetch: {
       color: Colors.GRAY_DARK,

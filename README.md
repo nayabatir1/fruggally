@@ -27,7 +27,7 @@ Users should be able to:
 - [x] Deeplinking to open product directly on respective app
 - [x] Vibrate on product addition
 - [x] Product can also be added directly by sharing - works with Amazon only
-- [] On orientation change update UI
+- [x] On orientation change update UI
 - [] Swipe left/right to remove product
 - [] Custom state management
 
