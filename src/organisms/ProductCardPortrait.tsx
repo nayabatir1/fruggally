@@ -12,7 +12,7 @@ interface Props extends Product {
   setProductId: (arg0: string | null) => void;
 }
 
-function ProductCard({
+function ProductCardPortrait({
   name,
   seller,
   image,
@@ -140,4 +140,4 @@ const style = (index: number) =>
     },
   });
 
-export default memo(ProductCard);
+export default memo(ProductCardPortrait);
