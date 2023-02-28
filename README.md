@@ -26,7 +26,7 @@ Users should be able to:
 - [x] Last fetched relative. It will update after certain interval
 - [x] Deeplinking to open product directly on respective app
 - [x] Vibrate on product addition
-- [] Product can also be added directly by sharing
+- [x] Product can also be added directly by sharing - works with Amazon only
 - [] On orientation change update UI
 - [] Swipe left/right to remove product
 - [] Custom state management
