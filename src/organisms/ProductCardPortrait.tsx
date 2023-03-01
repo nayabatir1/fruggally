@@ -58,13 +58,15 @@ function ProductCardPortrait({
         </View>
       </View>
 
-      <Image
-        style={memoizedStyle.img}
-        source={{uri: image}}
-        progressiveRenderingEnabled
-        resizeMode="contain"
-        alt="product image"
-      />
+      <View style={memoizedStyle.imgWrapper}>
+        <Image
+          style={memoizedStyle.img}
+          source={{uri: image}}
+          progressiveRenderingEnabled
+          resizeMode="contain"
+          alt="product image"
+        />
+      </View>
 
       <Text style={memoizedStyle.name}>{name}</Text>
 
@@ -104,9 +106,13 @@ const style = (index: number) =>
       flexDirection: 'row-reverse',
       alignItems: 'center',
     },
+    imgWrapper: {
+      alignItems: 'center',
+      paddingTop: 30,
+    },
     img: {
       height: 'auto',
-      width: '100%',
+      width: 300,
       aspectRatio: 2 / 1,
       marginTop: -25,
     },

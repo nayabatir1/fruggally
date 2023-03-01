@@ -97,10 +97,10 @@ const style = (index: number) =>
   StyleSheet.create({
     container: {
       width: Dimensions.get('window').width - 100,
-      borderWidth: 2,
       borderRadius: 10,
       backgroundColor: Colors.MILK,
       flexDirection: 'row',
+      marginRight: 10,
       ...Mixins.padding(10),
     },
     img: {

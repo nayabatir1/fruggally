@@ -12,6 +12,8 @@ const useStore = create<Store, [['zustand/persist', unknown]]>(
     (set, get) => ({
       products: [],
       isRefetching: false,
+      toggleRefetching: () =>
+        set(state => ({isRefetching: !state.isRefetching})),
       addProducts: product =>
         set(state => ({products: [...state.products, product]})),
       removeProduct: id =>

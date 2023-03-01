@@ -1,14 +1,14 @@
 import React, {memo, useCallback, useEffect, useState} from 'react';
-import {FlatList, StyleSheet, Text} from 'react-native';
+import {FlatList} from 'react-native';
 import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
 
 import Divider from '../atoms/Divider';
+import ListEmptyComponent from '../atoms/ListEmptyComponent';
 import useOrientation from '../hooks/Orientation';
 import DeleteProductModal from '../molecules/DeleteProductModal';
 import ProductCardLandscape from '../organisms/ProductCardLandscape';
 import ProductCardPortrait from '../organisms/ProductCardPortrait';
 import useStore from '../store/Store';
-import {Colors} from '../styles';
 import {Product} from '../types/product';
 import {Intent} from '../types/shareIntent';
 import AddProduct from '../utils/AddProduct';
@@ -16,26 +16,30 @@ import AddProduct from '../utils/AddProduct';
 function Index(): JSX.Element {
   const [productId, setProductId] = useState<null | string>(null);
 
-  const {products, isRefetching, refetchProducts} = useStore();
+  const {products, isRefetching, refetchProducts, toggleRefetching} =
+    useStore();
 
   const orientation = useOrientation();
 
   useEffect(() => {
     ReceiveSharingIntent.getReceivedFiles(
       async (files: Array<Intent>) => {
+        toggleRefetching();
         const [{text}] = files;
+
+        console.log({text});
 
         if (text) {
           await AddProduct(text);
         }
-
+        toggleRefetching();
         ReceiveSharingIntent.clearReceivedFiles();
       },
       (_error: Error) => {
         // console.log(error);
       },
     );
-  }, []);
+  }, [toggleRefetching]);
 
   const renderItem = useCallback(
     ({item}: {item: Product}) => {
@@ -50,20 +54,17 @@ function Index(): JSX.Element {
 
   return (
     <>
-      {products.length ? (
-        <FlatList
-          data={products}
-          keyExtractor={item => item.id}
-          renderItem={renderItem}
-          refreshing={isRefetching}
-          onRefresh={refetchProducts}
-          ItemSeparatorComponent={Divider}
-          horizontal={orientation === 'LANDSCAPE'}
-          removeClippedSubviews
-        />
-      ) : (
-        <Text style={style.textCenter}>Add products to view them</Text>
-      )}
+      <FlatList
+        data={products}
+        ListEmptyComponent={ListEmptyComponent}
+        keyExtractor={item => item.id}
+        renderItem={renderItem}
+        refreshing={isRefetching}
+        onRefresh={refetchProducts}
+        ItemSeparatorComponent={Divider}
+        horizontal={orientation === 'LANDSCAPE'}
+        removeClippedSubviews
+      />
 
       <DeleteProductModal
         productId={productId || ''}
@@ -72,12 +73,5 @@ function Index(): JSX.Element {
     </>
   );
 }
-
-const style = StyleSheet.create({
-  textCenter: {
-    textAlign: 'center',
-    color: Colors.WHITE,
-  },
-});
 
 export default memo(Index);

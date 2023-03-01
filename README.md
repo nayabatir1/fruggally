@@ -28,14 +28,15 @@ Users should be able to:
 - [x] Vibrate on product addition
 - [x] Product can also be added directly by sharing - works with Amazon only
 - [x] On orientation change update UI
-- [] Swipe left/right to remove product
 - [] Custom state management
+<!-- - [] Swipe left/right to remove product -->
 
 ### Screenshot
 
 <img src="./images/1.png" width="200" height="400">
 <img src="./images/2.png" width="200" height="400">
 <img src="./images/3.png" width="200" height="400">
+<img src="./images/4.png" width="600" height="300">
 
 ## My process
 
