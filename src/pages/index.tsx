@@ -1,5 +1,6 @@
 import React, {memo, useCallback, useEffect, useState} from 'react';
 import {FlatList} from 'react-native';
+import Animated, {FadeInDown, FadeInRight} from 'react-native-reanimated';
 import ReceiveSharingIntent from 'react-native-receive-sharing-intent';
 
 import Divider from '../atoms/Divider';
@@ -42,11 +43,19 @@ function Index(): JSX.Element {
   }, [toggleRefetching]);
 
   const renderItem = useCallback(
-    ({item}: {item: Product}) => {
+    ({item, index}: {item: Product; index: number}) => {
       if (orientation === 'PORTRAIT') {
-        return <ProductCardPortrait {...item} setProductId={setProductId} />;
+        return (
+          <Animated.View entering={FadeInRight.duration(1000 * index)}>
+            <ProductCardPortrait {...item} setProductId={setProductId} />
+          </Animated.View>
+        );
       } else {
-        return <ProductCardLandscape {...item} setProductId={setProductId} />;
+        return (
+          <Animated.View entering={FadeInDown.duration(1000 * index)}>
+            <ProductCardLandscape {...item} setProductId={setProductId} />
+          </Animated.View>
+        );
       }
     },
     [orientation],

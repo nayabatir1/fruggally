@@ -104,7 +104,7 @@ const style = (index: number) =>
     },
     img: {
       width: '30%',
-      height: '100%',
+      height: '95%',
     },
     details: {
       flex: 1,
