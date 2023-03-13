@@ -15,7 +15,7 @@ const useStore = create<Store, [['zustand/persist', unknown]]>(
       toggleRefetching: () =>
         set(state => ({isRefetching: !state.isRefetching})),
       addProducts: product =>
-        set(state => ({products: [...state.products, product]})),
+        set(state => ({products: [product, ...state.products]})),
       removeProduct: id =>
         set(state => ({
           products: state.products.filter(product => product.id !== id),
