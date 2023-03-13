@@ -9,7 +9,6 @@ const style = StyleSheet.create({
   divider: {
     height: 10,
     width: 10,
-    borderWidth: 1,
   },
 });
 
