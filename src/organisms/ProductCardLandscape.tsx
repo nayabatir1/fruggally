@@ -100,7 +100,6 @@ const style = (index: number) =>
       borderRadius: 10,
       backgroundColor: Colors.MILK,
       flexDirection: 'row',
-      marginRight: 10,
       ...Mixins.padding(10),
     },
     img: {
