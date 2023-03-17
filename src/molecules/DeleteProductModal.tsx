@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import Animated, {SlideInDown} from 'react-native-reanimated';
 import Octicons from 'react-native-vector-icons/Octicons';
 
 import ModalStructure from '../atoms/ModalStructure';
@@ -31,7 +32,7 @@ function DeleteProductModal({productId, setProductId}: Props): JSX.Element {
 
   return (
     <ModalStructure toggleModal={closeModal} visible={!!productId}>
-      <View style={style.wrapper}>
+      <Animated.View entering={SlideInDown.duration(500)} style={style.wrapper}>
         <Octicons name="trash" size={50} color={Colors.ALERT} />
 
         <Text style={style.title}>Are you sure?</Text>
@@ -49,7 +50,7 @@ function DeleteProductModal({productId, setProductId}: Props): JSX.Element {
             <DangerButton label="Yes" />
           </TouchableOpacity>
         </View>
-      </View>
+      </Animated.View>
     </ModalStructure>
   );
 }

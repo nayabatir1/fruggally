@@ -5,8 +5,12 @@ import {
   Text,
   TextInput,
   TouchableOpacity,
-  View,
 } from 'react-native';
+import Animated, {
+  FlipInXUp,
+  FlipOutXDown,
+  SlideInLeft,
+} from 'react-native-reanimated';
 
 import ModalStructure from '../atoms/ModalStructure';
 import {Colors, Mixins, Typography} from '../styles';
@@ -20,7 +24,7 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
   const [productLink, setProductLink] = useState('');
   const [isFetching, setIsFetching] = useState(false);
 
-  const closeModal = useCallback(async () => {
+  const fetchDetails = useCallback(async () => {
     setIsFetching(true);
 
     await AddProduct(productLink);
@@ -33,7 +37,7 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
   return (
     <>
       <ModalStructure visible={visible} toggleModal={toggleModal}>
-        <View style={style.container}>
+        <Animated.View entering={SlideInLeft} style={style.container}>
           <Text style={style.label}>Enter product URL</Text>
 
           <TextInput
@@ -45,14 +49,19 @@ function AddProductModal({visible, toggleModal}: Props): JSX.Element {
             placeholderTextColor={Colors.GRAY_MEDIUM}
           />
 
-          {isFetching ? (
-            <GrayButton label="Fetching..." />
-          ) : (
-            <TouchableOpacity onPress={closeModal}>
-              <PrimaryButton label="Submit" />
-            </TouchableOpacity>
+          {isFetching && (
+            <Animated.View entering={FlipInXUp}>
+              <GrayButton label="Fetching..." />
+            </Animated.View>
           )}
-        </View>
+          {isFetching || (
+            <Animated.View exiting={FlipOutXDown}>
+              <TouchableOpacity onPress={fetchDetails}>
+                <PrimaryButton label="Submit" />
+              </TouchableOpacity>
+            </Animated.View>
+          )}
+        </Animated.View>
       </ModalStructure>
     </>
   );
