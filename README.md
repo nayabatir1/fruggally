@@ -7,7 +7,6 @@ This is my first React Native unofficial project. The motivation for this projec
 - [Overview](#overview)
   - [The challenge](#the-challenge)
   - [Screenshot](#screenshot)
-  - [Video](#video)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -38,10 +37,6 @@ Users should be able to:
 <img src="./images/2.png" width="200" height="400">
 <img src="./images/3.png" width="200" height="400">
 <img src="./images/4.png" width="600" height="300">
-
-### Video
-
-<video src="/images/sample.mp4" controls="controls"></video>
 
 ## My process
 
